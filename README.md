@@ -19,8 +19,14 @@ Asegurante de tener las dependencias necesarias en tu sistema Linux:
 
 ```bash
 sudo apt update && sudo apt install xdotool playerctl libnotify-bin
-```
 
+# Compilar en modo debug
+cargo build
+
+# Compilar en modo release (recomendado)
+cargo build --release
+```
+Ejecución
 ## 🛠️ 3. Configuración (`config.yaml`)
 Configuración simplificada usando el ID del dispositivo extraído de `lsusb`:
 
