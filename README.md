@@ -1,11 +1,9 @@
-# ⌨️ MacroPad - Controlador de Dispositivos HID(Alfa)
+# ⌨️ MacroPad - Controlador de Dispositivos HID
 
 <link rel='icon' href='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎹</text></svg>'>
 
-Herramienta ligera escrita en **Rust** para interceptar eventos de dispositivos HID y ejecutar comandos personalizados en Linux.
+Herramienta ligera escrita en **Rust** para interceptar eventos de dispositivos HID (MacroPads, teclados mecánicos pequeños) y ejecutar comandos personalizados en Linux de forma ultra-rápida.
 
----
-#### *Basado en el proyecto original de **Lorenzo Carbonell** ([atareao/kboard](https://github.com/atareao/kboard))*
 ---
 
 ## 🚀 1. Características
@@ -14,20 +12,21 @@ Herramienta ligera escrita en **Rust** para interceptar eventos de dispositivos 
 *   ⚙️ **YAML Intuitivo:** Mapeo sencillo de códigos numéricos a comandos de shell.
 *   🐧 **Optimizado para Linux:** Integración fluida con `xdotool`, `pactl` y `playerctl`.
 
-## ⚙️ 2. Instalación
-Asegurante de tener las dependencias necesarias en tu sistema Linux:
+## ⚙️ 2. Instalación Automática
+Para compilar e instalar el binario, configurar los permisos USB y crear la carpeta de configuración, simplemente ejecutá:
 
 ```bash
-sudo apt update && sudo apt install xdotool playerctl libnotify-bin
-
-# Compilar en modo debug
-cargo build
-
-# Compilar en modo release (recomendado)
-cargo build --release
+chmod +x install.sh
+./install.sh
 ```
-Ejecución
-## 🛠️ 3. Configuración (`config.yaml`)
+
+### Dependencias de Sistema:
+Asegurante de tener las herramientas necesarias para que tus atajos funcionen:
+```bash
+sudo apt update && sudo apt install xdotool playerctl libnotify-bin
+```
+
+## 🛠️ 3. Configuración (`~/.config/macropad/config.yaml`)
 Configuración simplificada usando el ID del dispositivo extraído de `lsusb`:
 
 ```yaml
@@ -72,19 +71,6 @@ Utilizá estos nombres en tus comandos de `xdotool` dentro del `config.yaml`.
 *   `capslock`, `printscreen`, `insert`, `delete`
 *   `home`, `end`, `pageup`, `pagedown`
 *   `right`, `left`, `down`, `up`
-
-### 🛠️ Teclas de Función y Especiales
-*   `f1` - `f24`
-*   `macbrightnessdown`, `macbrightnessup`
-*   `numlock`, `numpad1` - `numpad0`, `numpadenter`, `numpaddot`
-*   `application`, `power`
-
-### 🎵 Teclas Multimedia
-*   `next`, `previous` / `prev`, `stop`, `play`, `mute`
-*   `volumeup`, `volumedown`, `favorites`, `calculator`, `screenlock`
-
-### 🖱️ Acciones de Mouse (xdotool)
-*   `wheel(-100)`, `click(left+right)`, `move(5,0)`, `drag(left+right,0,5)`
 
 ---
 
