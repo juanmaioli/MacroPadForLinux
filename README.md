@@ -1,9 +1,11 @@
-# ⌨️ MacroPad - Controlador de Dispositivos HID
+# ⌨️ MacroPad - Controlador de Dispositivos HID(Alfa)
 
 <link rel='icon' href='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎹</text></svg>'>
 
 Herramienta ligera escrita en **Rust** para interceptar eventos de dispositivos HID y ejecutar comandos personalizados en Linux.
 
+---
+#### *Basado en el proyecto original de **Lorenzo Carbonell** ([atareao/kboard](https://github.com/atareao/kboard))*
 ---
 
 ## 🚀 1. Características
