@@ -7,10 +7,10 @@ Herramienta ligera escrita en **Rust** para interceptar eventos de dispositivos 
 ---
 
 ## 🚀 1. Características
-*   🛠️ **Configuración Dinámica:** Soporta cualquier dispositivo HID mediante su ID de `lsusb`.
-*   🎡 **Soporte Multi-Rueda:** Capacidad para gestionar múltiples perillas (knobs).
-*   ⚙️ **YAML Intuitivo:** Mapeo sencillo de códigos de tecla a comandos de shell.
-*   🐧 **Optimizado para Linux:** Integración con `xdotool`, `pactl` y `playerctl`.
+*   🛠️ **Configuración Dinámica:** Soporta cualquier dispositivo HID mediante su ID de `lsusb` (formato `VID:PID`).
+*   🎡 **Soporte Unificado:** Maneja botones y perillas (knobs) bajo un mismo sistema de códigos.
+*   ⚙️ **YAML Intuitivo:** Mapeo sencillo de códigos numéricos a comandos de shell.
+*   🐧 **Optimizado para Linux:** Integración fluida con `xdotool`, `pactl` y `playerctl`.
 
 ## ⚙️ 2. Instalación
 Asegurante de tener las dependencias necesarias en tu sistema Linux:
@@ -20,16 +20,16 @@ sudo apt update && sudo apt install xdotool playerctl libnotify-bin
 ```
 
 ## 🛠️ 3. Configuración (`config.yaml`)
-Ahora podés copiar el ID directamente de la salida de `lsusb`:
+Configuración simplificada usando el ID del dispositivo:
 
 ```yaml
 # ⚙️ Configuración del Dispositivo
 device_id: "514c:8850"
 
-# ⌨️ Mapeo de Teclas y Ruedas
+# ⌨️ Mapeo de Acciones (Botones y Ruedas)
 keys:
   7: "xdotool key ctrl+c"             # Copiar
-  19: "pactl set-sink-volume @DEFAULT_SINK@ +5%" # Rueda Vol+
+  19: "pactl set-sink-volume @DEFAULT_SINK@ +5%" # Rueda Derecha
 ```
 
 ## 🛡️ 4. Permisos USB (udev)

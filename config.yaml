@@ -23,11 +23,11 @@ keys:
   14: "playerctl play-pause"          # Play / Pausa
   15: "notify-send 'KBoard' 'MacroPad listo'"
 
-  # --- 🎡 Rueda 1 (Knob Izquierdo) ---
+  # ---  Rueda 1 (Knob Izquierdo) ---
   19: "pactl set-sink-volume @DEFAULT_SINK@ -1%"  # Giro Izquierda: Bajar Vol
   20: "pactl set-sink-mute @DEFAULT_SINK@ toggle" # Presionar (si aplica)
   21: "pactl set-sink-volume @DEFAULT_SINK@ +1%"  # Giro Derecha: Subir Vol
-  # --- 🎡 Rueda 2 (Knob Derecho) ---
+  # --- Rueda 2 (Knob Derecho) ---
   22: "xdotool key ctrl+minus"    # Zoom Minus
   23: "xdotool key ctrl+0"        # Reestablece Zoom
   24: "xdotool key ctrl+plus"     # Zoom Plus

@@ -8,7 +8,6 @@ use tracing::{info, warn, error};
 pub struct Config {
     pub device_id: Option<String>,
     pub keys: Option<HashMap<u8, String>>,
-    pub wheel: Option<HashMap<u8, String>>,
 }
 
 fn load_config<P: AsRef<std::path::Path>>(path: P) -> anyhow::Result<Config> {
@@ -39,7 +38,6 @@ impl Config {
                     Config {
                         device_id: None,
                         keys: None,
-                        wheel: None,
                     }
                 }
             },
@@ -48,7 +46,6 @@ impl Config {
                 Config {
                     device_id: None,
                     keys: None,
-                    wheel: None,
                 }
             }
         }

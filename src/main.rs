@@ -86,17 +86,10 @@ fn main() {
         match event {
             DeviceEvent::Key(code) => {
                 if let Some(cmd) = cfg.keys.as_ref().and_then(|m| m.get(&code)).cloned() {
+                    info!("🖱️ Ejecutando acción para código {}", code);
                     try_exec(&cmd);
                 } else {
-                    debug!("Tecla sin acción configurada: {}", code);
-                }
-            }
-            DeviceEvent::Wheel(id, val) => {
-                if let Some(cmd) = cfg.wheel.as_ref().and_then(|m| m.get(&val)).cloned() {
-                    info!("Rueda ID {}: Ejecutando comando...", id);
-                    try_exec(&cmd);
-                } else {
-                    debug!("Rueda ID {} con valor {} sin acción configurada", id, val);
+                    debug!("Código sin acción configurada: {}", code);
                 }
             }
         }
