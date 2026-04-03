@@ -39,46 +39,52 @@ fn main() {
     let hdi = Arc::new(Hdi::new(v_id, p_id).expect("Error al inicializar Hdi"));
     let (tx, rx) = mpsc::channel();
 
-    // 2. Hilo para las TECLAS
-    // Hilo unificado o procesador de eventos
+    // 2. Hilos de Lectura Dinámicos
     let tx_main = tx.clone();
     let hdi_main = hdi.clone();
-    thread::spawn(move || {
-        let api = HidApi::new().unwrap();
-        // Abrimos la interfaz 1 que es la que está mandando datos
-        let p_keys = &hdi_main.p_keys;
-        let p_wheel = &hdi_main.p_wheel;
-        
-        // Función interna para procesar los buffers
-        let process_buffer = |buf: &[u8], res: usize, transmitter: &mpsc::Sender<DeviceEvent>| {
-            if res > 0 && buf[0] == 1 { // Report ID 1: Todo el dispositivo
-                if res >= 4 && buf[3] != 0 {
-                    let code = buf[3];
-                    info!("🖱️ Evento detectado: Código {}", code);
-                    let _ = transmitter.send(DeviceEvent::Key(code));
-                }
-            }
-        };
-
-        // Escuchamos en ambas interfaces por si acaso
-        let dev_keys = api.open_path(p_keys).expect("No se pudo abrir p_keys");
-        let dev_wheel = api.open_path(p_wheel).expect("No se pudo abrir p_wheel");
-
-        let tx_k = tx_main.clone();
+    
+    // Lanzamos un hilo para cada interfaz encontrada
+    for path in hdi_main.paths.clone() {
+        let tx_interface = tx_main.clone();
         thread::spawn(move || {
-            let mut buf = [0u8; 64];
-            while let Ok(res) = dev_keys.read(&mut buf) {
-                process_buffer(&buf, res, &tx_k);
+            let api = HidApi::new().unwrap();
+            match api.open_path(&path) {
+                Ok(dev) => {
+                    info!("🔓 Abierta interfaz: {:?}", path);
+                    let mut buf = [0u8; 64];
+                    loop {
+                        if let Ok(res) = dev.read(&mut buf) {
+                            if res > 0 {
+                                // Solo imprimimos si hay algún byte útil (distinto de 0 en el reporte)
+                                let has_data = buf.iter().take(res).any(|&b| b != 0);
+                                if has_data {
+                                    info!("📡 [Report ID {}] Datos: {:?}", buf[0], &buf[..res]);
+                                }
+
+                                if buf[0] == 1 && res >= 4 && buf[3] != 0 {
+                                    let _ = tx_interface.send(DeviceEvent::Key(buf[3]));
+                                } else if buf[0] != 1 && res >= 2 {
+                                    let code = if buf[1] != 0 { buf[1] } else { buf[0] };
+                                    let _ = tx_interface.send(DeviceEvent::Key(code));
+                                }
+                            }
+                        }
+                    }
+                }
+                Err(e) => error!("❌ Error al abrir interfaz {:?}: {}", path, e),
             }
         });
-
-        let mut buf = [0u8; 64];
-        while let Ok(res) = dev_wheel.read(&mut buf) {
-            process_buffer(&buf, res, &tx_main);
-        }
-    });
+    }
 
     info!("✅ Dispositivo vinculado correctamente.");
+    
+    // Mostramos la configuración física si está presente
+    if let (Some(r), Some(c), Some(w)) = (cfg.rows, cfg.cols, cfg.wheels) {
+        info!("🎮 MacroPad detectado: {} ({}x{} teclas, {} ruedas)", 
+            cfg.device_id.as_ref().unwrap_or(&"0x514c:0x8850".to_string()),
+            r, c, w);
+    }
+
     info!("🚀 Escuchando eventos... ");
 
     // 4. Bucle principal de ejecución

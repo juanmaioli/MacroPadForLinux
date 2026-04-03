@@ -7,6 +7,9 @@ use tracing::{info, warn, error};
 #[derive(Debug, Deserialize)]
 pub struct Config {
     pub device_id: Option<String>,
+    pub rows: Option<u8>,
+    pub cols: Option<u8>,
+    pub wheels: Option<u8>,
     pub keys: Option<HashMap<u8, String>>,
 }
 
@@ -37,6 +40,9 @@ impl Config {
                     error!("Se encontró '{}' pero no se pudo cargar: {}. Continuando sin acciones.", path, e);
                     Config {
                         device_id: None,
+                        rows: None,
+                        cols: None,
+                        wheels: None,
                         keys: None,
                     }
                 }
@@ -45,6 +51,9 @@ impl Config {
                 warn!("No se encontró config.yaml en el directorio actual ni en ~/.config/kboard/. Continuando sin acciones configuradas.");
                 Config {
                     device_id: None,
+                    rows: None,
+                    cols: None,
+                    wheels: None,
                     keys: None,
                 }
             }

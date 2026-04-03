@@ -1,15 +1,18 @@
 # ⚙️ Configuración del Dispositivo
 device_id: "514c:8850"
+rows: 4
+cols: 3
+wheels: 2
 
 # ⌨️ Mapeo de Teclas y Ruedas
 keys:
   # --- Fila 1 (Superior) ---
-  4: "xdotool key ctrl+z"             # Deshacer
+  4: "xdotool key ctrl+0"             # Deshacer
   5: "xdotool key ctrl+y"             # Rehacer
   6: "xdotool key ctrl+x"             # Cortar
 
   # --- Fila 2 (Media) ---
-  7: "xdotool key ctrl+c"             # Copiar
+  7: "xdotool key ctrl+0"             # Copiar
   8: "xdotool key ctrl+v"             # Pegar
   9: "xdotool key ctrl+a"             # Seleccionar Todo
 
