@@ -1,1 +1,33 @@
-u
+# ⚙️ Configuración del Dispositivo
+device_id: "514c:8850"
+
+# ⌨️ Mapeo de Teclas y Ruedas
+keys:
+  # --- Fila 1 (Superior) ---
+  4: "xdotool key ctrl+z"             # Deshacer
+  5: "xdotool key ctrl+y"             # Rehacer
+  6: "xdotool key ctrl+x"             # Cortar
+
+  # --- Fila 2 (Media) ---
+  7: "xdotool key ctrl+c"             # Copiar
+  8: "xdotool key ctrl+v"             # Pegar
+  9: "xdotool key ctrl+a"             # Seleccionar Todo
+
+  # --- Fila 3 (Inferior) ---
+  10: "xdotool key ctrl+s"            # Guardar
+  11: "xdotool key alt+Tab"           # Cambiar Ventana
+  12: "xdg-open ."                    # Abrir Carpeta Actual
+
+  # --- Fila 4 / Teclas Extra ---
+  13: "pactl set-sink-mute @DEFAULT_SINK@ toggle" # Silenciar
+  14: "playerctl play-pause"          # Play / Pausa
+  15: "notify-send 'KBoard' 'MacroPad listo'"
+
+  # --- 🎡 Rueda 1 (Knob Izquierdo) ---
+  19: "pactl set-sink-volume @DEFAULT_SINK@ -1%"  # Giro Izquierda: Bajar Vol
+  20: "pactl set-sink-mute @DEFAULT_SINK@ toggle" # Presionar (si aplica)
+  21: "pactl set-sink-volume @DEFAULT_SINK@ +1%"  # Giro Derecha: Subir Vol
+  # --- 🎡 Rueda 2 (Knob Derecho) ---
+  22: "xdotool key ctrl+minus"    # Zoom Minus
+  23: "xdotool key ctrl+0"        # Reestablece Zoom
+  24: "xdotool key ctrl+plus"     # Zoom Plus

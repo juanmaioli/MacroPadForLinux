@@ -7,9 +7,9 @@ Herramienta ligera escrita en **Rust** para interceptar eventos de dispositivos 
 ---
 
 ## 🚀 1. Características
-*   🛠️ **Detección Automática:** Soporte específico para dispositivos con ID `514c:8850`.
+*   🛠️ **Configuración Dinámica:** Soporta cualquier dispositivo HID mediante su ID de `lsusb`.
 *   🎡 **Soporte Multi-Rueda:** Capacidad para gestionar múltiples perillas (knobs).
-*   ⚙️ **Configuración YAML:** Mapeo sencillo de códigos de tecla a comandos de shell.
+*   ⚙️ **YAML Intuitivo:** Mapeo sencillo de códigos de tecla a comandos de shell.
 *   🐧 **Optimizado para Linux:** Integración con `xdotool`, `pactl` y `playerctl`.
 
 ## ⚙️ 2. Instalación
@@ -20,12 +20,15 @@ sudo apt update && sudo apt install xdotool playerctl libnotify-bin
 ```
 
 ## 🛠️ 3. Configuración (`config.yaml`)
-El archivo de configuración permite asignar cualquier comando a los códigos de tu dispositivo:
+Ahora podés copiar el ID directamente de la salida de `lsusb`:
 
 ```yaml
+# ⚙️ Configuración del Dispositivo
+device_id: "514c:8850"
+
+# ⌨️ Mapeo de Teclas y Ruedas
 keys:
   7: "xdotool key ctrl+c"             # Copiar
-  8: "xdotool key ctrl+v"             # Pegar
   19: "pactl set-sink-volume @DEFAULT_SINK@ +5%" # Rueda Vol+
 ```
 

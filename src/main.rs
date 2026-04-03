@@ -32,7 +32,11 @@ fn main() {
     // Cargamos la configuración YAML. Buscamos en el directorio actual primero,
     // luego en `$HOME/.config/kboard/config.yaml`.
     let cfg = Arc::new(Config::load_config());
-    let hdi = Arc::new(Hdi::new().expect("Error al inicializar Hdi"));
+
+    // Obtenemos los IDs usando el nuevo método get_device_ids()
+    let (v_id, p_id) = cfg.get_device_ids();
+
+    let hdi = Arc::new(Hdi::new(v_id, p_id).expect("Error al inicializar Hdi"));
     let (tx, rx) = mpsc::channel();
 
     // 2. Hilo para las TECLAS

@@ -8,19 +8,14 @@ pub struct Hdi {
     pub p_wheel: std::ffi::CString,
 }
 
-// Definimos los IDs del dispositivo
-const VENDOR_ID: u16 = 0x514c;
-const PRODUCT_ID: u16 = 0x8850;
-
-
 impl Hdi {
-    pub fn new() -> Result<Self, anyhow::Error> {
+    pub fn new(vendor_id: u16, product_id: u16) -> Result<Self, anyhow::Error> {
         let api = HidApi::new()?;
         let mut path_keys = None;
         let mut path_wheel = None;
 
         for device in api.device_list() {
-            if device.vendor_id() == VENDOR_ID && device.product_id() == PRODUCT_ID {
+            if device.vendor_id() == vendor_id && device.product_id() == product_id {
                 info!("🔍 Interfaz: #{} | Path: {:?} | UsagePage: 0x{:x} | Usage: 0x{:x}", 
                     device.interface_number(), device.path(), device.usage_page(), device.usage());
                 
