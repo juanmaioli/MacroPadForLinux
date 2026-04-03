@@ -88,4 +88,5 @@ SUBSYSTEM=="hidraw", ATTRS{idVendor}=="514c", ATTRS{idProduct}=="8850", MODE="06
 ```
 
 ---
-*Desarrollado por **Juan Gabriel Maioli*** 🇦🇷
+*Desarrollado por **Juan Gabriel Maioli*** 🇦🇷  
+*Basado en el proyecto original de **Lorenzo Carbonell** ([atareao/kboard](https://github.com/atareao/kboard))*
