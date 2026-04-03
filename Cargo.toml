@@ -1,10 +1,10 @@
 [package]
-name = "kboard"
+name = "MacroPad"
 version = "0.4.0"
 edition = "2024"
 
 [[bin]]
-name = "kboard"
+name = "macropad"
 path = "src/main.rs"
 
 [dependencies]

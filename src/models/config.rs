@@ -68,10 +68,10 @@ fn find_config() -> Option<String> {
         return Some("config.yaml".to_string());
     }
 
-    // Fallback to $HOME/.config/kboard/config.yaml
+    // Fallback to $HOME/.config/macropad/config.yaml
     if let Some(home) = env::var_os("HOME") {
         let mut p = PathBuf::from(home);
-        p.push(".config/kboard/config.yaml");
+        p.push(".config/macropad/config.yaml");
         if p.exists() {
             return Some(p.to_string_lossy().into_owned());
         }
