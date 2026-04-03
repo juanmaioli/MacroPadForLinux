@@ -4,15 +4,23 @@ rows: 4
 cols: 3
 wheels: 2
 
+# 💡 Configuración de Luces (Modo Dual)
+led:
+  mode: 1
+  r: 255
+  g: 0
+  b: 0
+
+
 # ⌨️ Mapeo de Teclas y Ruedas
 keys:
   # --- Fila 1 (Superior) ---
-  4: "xdotool key ctrl+0"             # Deshacer
+  4: "xdotool key ctrl+Home"          # Deshacer
   5: "xdotool key ctrl+y"             # Rehacer
   6: "xdotool key ctrl+x"             # Cortar
 
   # --- Fila 2 (Media) ---
-  7: "xdotool key ctrl+0"             # Copiar
+  7: "xdotool key ctrl+End"           # Copiar
   8: "xdotool key ctrl+v"             # Pegar
   9: "xdotool key ctrl+a"             # Seleccionar Todo
 
@@ -35,7 +43,7 @@ keys:
   23: "xdotool key ctrl+0"        # Reestablece Zoom
   24: "xdotool key ctrl+plus"     # Zoom Plus
 
-# Modifiers: 
+# Modifiers:
 #  - ctrl
 #  - shift
 #  - alt / opt
@@ -48,7 +56,7 @@ keys:
 # Keys:
 #  - a
 #  - b
-#  - c
+#  - ca
 #  - d
 #  - e
 #  - f

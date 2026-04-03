@@ -4,12 +4,21 @@ use std::{fs, env, path::PathBuf};
 use tracing::{info, warn, error};
 
 
+#[derive(Debug, Deserialize, Clone)]
+pub struct LedConfig {
+    pub mode: u8,
+    pub r: u8,
+    pub g: u8,
+    pub b: u8,
+}
+
 #[derive(Debug, Deserialize)]
 pub struct Config {
     pub device_id: Option<String>,
     pub rows: Option<u8>,
     pub cols: Option<u8>,
     pub wheels: Option<u8>,
+    pub led: Option<LedConfig>,
     pub keys: Option<HashMap<u8, String>>,
 }
 
@@ -43,20 +52,22 @@ impl Config {
                         rows: None,
                         cols: None,
                         wheels: None,
+                        led: None,
                         keys: None,
                     }
-                }
-            },
-            None => {
-                warn!("No se encontró config.yaml en el directorio actual ni en ~/.config/kboard/. Continuando sin acciones configuradas.");
-                Config {
+                    }
+                    },
+                    None => {
+                    warn!("No se encontró config.yaml en el directorio actual ni en ~/.config/macropad/. Continuando sin acciones configuradas.");
+                    Config {
                     device_id: None,
                     rows: None,
                     cols: None,
                     wheels: None,
+                    led: None,
                     keys: None,
-                }
-            }
+                    }
+                    }
         }
     }
 }
