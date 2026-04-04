@@ -43,16 +43,16 @@ keys:
 ```
 
 ## 📋 4. Mapa de Teclas (Modelo 3x4 + 2 Knobs)
-Basado en el dispositivo `514c:8850`, los códigos detectados son:
+Basado en tu `config.yaml`, los códigos y acciones actuales son:
 
-| Tipo | Ubicación | Código | Acción Configurada |
-| :--- | :--- | :--- | :--- |
-| **Tecla** | Fila 1 (Sup) | 4, 5, 6 | Deshacer, Rehacer, Cortar |
-| **Tecla** | Fila 2 (Med) | 7, 8, 9 | Copiar, Pegar, Seleccionar Todo |
-| **Tecla** | Fila 3 (Inf) | 10, 11, 12 | Guardar, Cambiar Ventana, Abrir Carpeta |
-| **Tecla** | Fila 4 (Extra) | 13, 14, 15 | Silenciar, Play/Pausa, Notificación |
-| **Rueda 1** | Izquierda | 19, 20, 23 | Vol+, Vol-, Mute (Click) |
-| **Rueda 2** | Derecha | 21, 22, 24 | Zoom In, Zoom Out, Reset Zoom (Click) |
+| Ubicación | Códigos | Acciones Configuradas |
+| :--- | :--- | :--- |
+| **Fila 1 (Superior)** | 7, 11, 15 | Ir Inicio, Ir Fin, Seleccionar Todo |
+| **Fila 2 (Media-Sup)** | 6, 10, 14 | Copiar, Pegar, Nueva Pestaña |
+| **Fila 3 (Media-Inf)** | 5, 9, 13 | Deshacer, Rehacer, Cerrar Pestaña |
+| **Fila 4 (Inferior)** | 4, 8, 12 | Copiar/Pegar Terminal, Salir |
+| **Rueda 1 (Izquierda)**| 19, 20, 21 | Bajar Vol, Silenciar (Click), Subir Vol |
+| **Rueda 2 (Derecha)**  | 22, 23, 24 | Zoom Out, Reset Zoom (Click), Zoom In |
 
 ---
 
