@@ -11,37 +11,37 @@ led:
   g: 0
   b: 0
 
-
 # ⌨️ Mapeo de Teclas y Ruedas
 keys:
   # --- Fila 1 (Superior) ---
-  4: "xdotool key ctrl+Home"          # Deshacer
-  5: "xdotool key ctrl+y"             # Rehacer
-  6: "xdotool key ctrl+x"             # Cortar
+  7: "xdotool key ctrl+Home"           # Ir al Inicio
+  11: "xdotool key ctrl+End"           # Ir al Final
+  15: "xdotool key ctrl+a"             # Seleccionar Todo
 
-  # --- Fila 2 (Media) ---
-  7: "xdotool key ctrl+End"           # Copiar
-  8: "xdotool key ctrl+v"             # Pegar
-  9: "xdotool key ctrl+a"             # Seleccionar Todo
+# --- Fila 2 Media Superior ---
+  6: "xdotool key ctrl+c"             # Copiar
+  10: "xdotool key ctrl+v"            # Pegar
+  14: "xdotool key ctrl+t"            # Nueva Pesteña
 
-  # --- Fila 3 (Inferior) ---
-  10: "xdotool key ctrl+s"            # Guardar
-  11: "xdotool key alt+Tab"           # Cambiar Ventana
-  12: "xdg-open ."                    # Abrir Carpeta Actual
+# --- Fila 3 Media Inferior ---
+  5: "xdotool key ctrl+z"             # Deshacer
+  9: "xdotool key ctrl+y"             # Rehacer
+  13: "xdotool key ctrl+w"            # Cerrar Pestaña
 
-  # --- Fila 4 / Teclas Extra ---
-  13: "pactl set-sink-mute @DEFAULT_SINK@ toggle" # Silenciar
-  14: "playerctl play-pause"          # Play / Pausa
-  15: "notify-send 'KBoard' 'MacroPad listo'"
+  # --- Fila 4 Inferior ---
+  4: "xdotool key ctrl+shift+c"       # Copiar
+  8: "xdotool key ctrl+shift+v"       # Pegar
+  12: "xdotool key ctrl+q"            # Sakir
 
   # ---  Rueda 1 (Knob Izquierdo) ---
   19: "pactl set-sink-volume @DEFAULT_SINK@ -1%"  # Giro Izquierda: Bajar Vol
-  20: "pactl set-sink-mute @DEFAULT_SINK@ toggle" # Presionar (si aplica)
+  20: "pactl set-sink-mute @DEFAULT_SINK@ toggle" # Presionar: Mute
   21: "pactl set-sink-volume @DEFAULT_SINK@ +1%"  # Giro Derecha: Subir Vol
+
   # --- Rueda 2 (Knob Derecho) ---
-  22: "xdotool key ctrl+minus"    # Zoom Minus
-  23: "xdotool key ctrl+0"        # Reestablece Zoom
-  24: "xdotool key ctrl+plus"     # Zoom Plus
+  22: "xdotool key ctrl+minus"    # Giro Izquierda: Zoom Minus
+  23: "xdotool key ctrl+0"        # Presionar: Reestablece Zoom
+  24: "xdotool key ctrl+plus"     # Giro Derecha: Zoom Plus
 
 # Modifiers:
 #  - ctrl
@@ -180,9 +180,3 @@ keys:
 #  - favorites
 #  - calculator
 #  - screenlock
-
-# Mouse actions:
-#  - wheel(-100)
-#  - click(left+right)
-#  - move(5,0)
-#  - drag(left+right,0,5)

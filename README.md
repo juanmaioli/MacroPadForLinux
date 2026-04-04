@@ -82,5 +82,10 @@ SUBSYSTEM=="hidraw", ATTRS{idVendor}=="514c", ATTRS{idProduct}=="8850", MODE="06
 ```
 
 ---
+## 🚧 7. Próximos Pasos (TODO)
+- [ ] **Soporte de Layers:** Investigar el mapeo de la segunda capa de teclas (Capa 2) activada por el botón físico 'Layer'.
+- [ ] **LED Backlight:** Perfeccionar el protocolo de comunicación para el control total de la iluminación RGB (experimental actualmente).
+
+---
 *Desarrollado por **Juan Gabriel Maioli*** 🇦🇷  
 *Basado en el proyecto original de **Lorenzo Carbonell** ([atareao/kboard](https://github.com/atareao/kboard))*
