@@ -24,7 +24,9 @@ else
 fi
 
 echo "🛡️ Configurando reglas de udev para el dispositivo 514c:8850..."
-echo 'SUBSYSTEM=="hidraw", ATTRS{idVendor}=="514c", ATTRS{idProduct}=="8850", MODE="0666"' | sudo tee /etc/udev/rules.d/99-macropad.rules
+# La regla incluye flags para que el sistema ignore el dispositivo como teclado estándar
+echo 'SUBSYSTEM=="hidraw", ATTRS{idVendor}=="514c", ATTRS{idProduct}=="8850", MODE="0666"
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="514c", ATTRS{idProduct}=="8850", ENV{ID_INPUT}="", ENV{ID_INPUT_KEYBOARD}="", ENV{LIBINPUT_IGNORE_DEVICE}="1"' | sudo tee /etc/udev/rules.d/99-macropad.rules
 sudo udevadm control --reload-rules
 sudo udevadm trigger
 

@@ -75,10 +75,11 @@ Utilizá estos nombres en tus comandos de `xdotool` dentro del `config.yaml`.
 ---
 
 ## 🛡️ 6. Permisos USB (udev)
-Para ejecutar sin `sudo`, crea una regla en `/etc/udev/rules.d/99-macropad.rules`:
+Para ejecutar sin `sudo` y evitar que las teclas escriban letras en el sistema, creá esta regla en `/etc/udev/rules.d/99-macropad.rules`:
 
 ```text
 SUBSYSTEM=="hidraw", ATTRS{idVendor}=="514c", ATTRS{idProduct}=="8850", MODE="0666"
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="514c", ATTRS{idProduct}=="8850", ENV{ID_INPUT}="", ENV{ID_INPUT_KEYBOARD}="", ENV{LIBINPUT_IGNORE_DEVICE}="1"
 ```
 
 ---
