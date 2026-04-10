@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# 🎹 Script de Instalación MacroPad
+# 🎹 Script de Instalación MacroPad (Modo Background)
 
 echo "🚀 Compilando MacroPad en modo Release..."
 cargo build --release
@@ -24,11 +24,32 @@ else
 fi
 
 echo "🛡️ Configurando reglas de udev para el dispositivo 514c:8850..."
-# La regla incluye flags para que el sistema ignore el dispositivo como teclado estándar
 echo 'SUBSYSTEM=="hidraw", ATTRS{idVendor}=="514c", ATTRS{idProduct}=="8850", MODE="0666"
 SUBSYSTEMS=="usb", ATTRS{idVendor}=="514c", ATTRS{idProduct}=="8850", ENV{ID_INPUT}="", ENV{ID_INPUT_KEYBOARD}="", ENV{LIBINPUT_IGNORE_DEVICE}="1"' | sudo tee /etc/udev/rules.d/99-macropad.rules
 sudo udevadm control --reload-rules
 sudo udevadm trigger
 
+echo "🔄 Configurando MacroPad como servicio de usuario (Background)..."
+mkdir -p ~/.config/systemd/user/
+cat <<EOF > ~/.config/systemd/user/macropad.service
+[Unit]
+Description=Controlador de MacroPad en Background
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/macropad
+WorkingDirectory=$HOME
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=default.target
+EOF
+
+systemctl --user daemon-reload
+systemctl --user enable macropad.service
+systemctl --user restart macropad.service
+
 echo "✨ ¡Instalación completada con éxito!"
-echo "🎹 Ya podés ejecutar 'macropad' desde cualquier terminal."
+echo "🎹 MacroPad ya está corriendo en segundo plano."
+echo "📝 Podés ver los logs con: journalctl --user -u macropad.service -f"

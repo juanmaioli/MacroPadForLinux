@@ -11,16 +11,24 @@ Herramienta ligera escrita en **Rust** para interceptar eventos de dispositivos 
 *   🎡 **Soporte Unificado:** Maneja botones y perillas (knobs) bajo un mismo sistema de códigos.
 *   ⚙️ **YAML Intuitivo:** Mapeo sencillo de códigos numéricos a comandos de shell.
 *   🐧 **Optimizado para Linux:** Integración fluida con `xdotool`, `pactl` y `playerctl`.
-
 ## ⚙️ 2. Instalación Automática
-Para compilar e instalar el binario, configurar los permisos USB y crear la carpeta de configuración, simplemente ejecutá:
+Para compilar e instalar el binario, configurar los permisos USB y activar el servicio en segundo plano (background), simplemente ejecutá:
 
 ```bash
 chmod +x install.sh
 ./install.sh
 ```
 
+### 📋 Comandos Útiles
+Una vez instalado, podés gestionar el MacroPad con estos comandos:
+
+*   **Ver actividad en tiempo real:** `journalctl --user -u macropad.service -f`
+*   **Reiniciar (si editás el config):** `systemctl --user restart macropad.service`
+*   **Detener el servicio:** `systemctl --user stop macropad.service`
+*   **Iniciar el servicio:** `systemctl --user start macropad.service`
+
 ### Dependencias de Sistema:
+...
 Asegurante de tener las herramientas necesarias para que tus atajos funcionen:
 ```bash
 sudo apt update && sudo apt install xdotool playerctl libnotify-bin
